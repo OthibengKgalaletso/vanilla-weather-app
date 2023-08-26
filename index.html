@@ -9,6 +9,7 @@
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="src/style.css" />
     <title>Document</title>
   </head>
@@ -17,10 +18,10 @@
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
-            <h1>Johannesburg</h1>
+            <h1 id="current-city"></h1>
             <ul>
-              <li>Friday | 23 August 2023 | 08:00</li>
-              <li>Clear</li>
+              <li id="current-date-details">Friday | 23 August 2023 | 08:00</li>
+              <li id="weather-description">Clear</li>
             </ul>
           </div>
           <div class="row">
@@ -31,16 +32,15 @@
                   alt="clear-icon"
                 />
                 <div>
-                  <strong id="current-temperature"> 17 </strong
+                  <strong id="current-temperature"></strong
                   ><span class="units">°C | <a href="#">°F</a> </span>
                 </div>
               </div>
             </div>
             <div class="col-6">
               <ul>
-                <li>Precipitation: 0%</li>
-                <li>Humidity: 65%</li>
-                <li>Wind: 2 km/h</li>
+                <li id="current-humidity"></li>
+                <li id="current-wind"></li>
               </ul>
             </div>
           </div>

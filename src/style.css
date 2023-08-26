@@ -19,6 +19,7 @@ li {
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
+  text-transform: capitalize;
 }
 a {
   text-decoration: none;
@@ -52,6 +53,8 @@ a {
 .weather-temperature .units {
   position: relative;
   top: -34px;
-  right: 10px;
   font-size: 16px;
+}
+#current-wind {
+  text-transform: none;
 }
