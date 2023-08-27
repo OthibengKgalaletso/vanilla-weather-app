@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
 }
 h1 {
-  color: #878787;
+  color: #70757a;
   font-size: 33px;
   font-weight: 300;
   line-height: 28px;
@@ -20,6 +20,7 @@ li {
   font-weight: 100;
   line-height: 19px;
   text-transform: capitalize;
+  color: #70757a;
 }
 a {
   text-decoration: none;
@@ -42,6 +43,12 @@ a {
   margin-right: 5px;
   height: 64px;
   width: 64px;
+}
+.cityName {
+  margin-bottom: 20px;
+  background-color: transparent;
+  padding: 2px;
+  border-radius: 4px;
 }
 #current-temperature {
   color: rgb(33, 33, 33);
