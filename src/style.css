@@ -46,9 +46,12 @@ a {
 }
 .cityName {
   margin-bottom: 20px;
+  margin-right: 10px;
   background-color: transparent;
   padding: 2px;
+  padding-right: 100px;
   border-radius: 4px;
+  border-color: #70757a;
 }
 #current-temperature {
   color: rgb(33, 33, 33);
@@ -64,4 +67,8 @@ a {
 }
 #current-wind {
   text-transform: none;
+}
+.weather-temperature .active {
+  color: #70757a;
+  cursor: default;
 }
