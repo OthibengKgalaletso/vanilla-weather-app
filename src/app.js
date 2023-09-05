@@ -38,6 +38,64 @@ function formatDate(timestamp) {
   return `${currentDay} | ${currentDate} ${currentMonth} ${currentYear} | ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast);
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`; // Everything downstream will be in the same row (creating a grid)
+  forecast.forEach(function (forecastDay, index) {
+    //To loop through the days in the array one at a time - so that it may display forecast for different days
+    //we are using the same HTML but for different days
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+              <div class="col-2">
+                <div class="forecast-dates">${formatDay(forecastDay.dt)}</div>
+                <img
+                  src="https://openweathermap.org/img/wn/${
+                    forecastDay.weather[0].icon
+                  }@2x.png"
+                  alt=""
+                  width="43"
+                />
+                <div class="forecast-temperatures">
+                  <span class="weather-forecast-max-temperature">${Math.round(
+                    forecastDay.temp.max
+                  )}°</span>
+                  <span class="weather-forecast-min-temperature">${Math.round(
+                    forecastDay.temp.min
+                  )}°</span>
+                </div>
+              </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`; //This is for closing the row div element.
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let latitude = coordinates.lat;
+  let longitude = coordinates.lon;
+  let units = "metric";
+  let apiKey = "210d99196a88b9257ed8cb3535a0a0c5";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayTemperature(response) {
   let mainTemperature = document.querySelector("#current-temperature");
   mainTemperature.innerHTML = Math.round(response.data.main.temp);
@@ -69,13 +127,14 @@ function displayTemperature(response) {
     `https://openweathermap.org/img/wn/${iconCode}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
 }
 
 function search(city) {
   let apiKey = "2a5f42ec0e56eeb52bee2cc8b3e92147";
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiUrl).then(displayTemperature);
 }
 
@@ -113,3 +172,5 @@ fahrenheitLinkElement.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLinkElement = document.querySelector("#celsius-link");
 celsiusLinkElement.addEventListener("click", displayCelsiusTemperature);
+
+search("New York");
