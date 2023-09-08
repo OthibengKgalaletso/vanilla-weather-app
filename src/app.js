@@ -48,7 +48,6 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
 
   let forecastElement = document.querySelector("#forecast");
 
@@ -87,7 +86,6 @@ function displayForecast(response) {
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let latitude = coordinates.lat;
   let longitude = coordinates.lon;
   let units = "metric";
